@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import TopNavBar from "./components/TopNavBar";
 import YearPicker from "./components/YearPicker";
 import BasicSelect from "./components/YearPicker";
+import Button from "@mui/material/Button";
 
 export default function SearchPage() {
   return (
@@ -22,6 +23,9 @@ export default function SearchPage() {
         />
         <YearPicker label="Start Year" />
         <YearPicker label="End Year" />
+      </div>
+      <div class="searchbutton-container">
+        <Button variant="outlined">Search</Button>
       </div>
     </div>
   );

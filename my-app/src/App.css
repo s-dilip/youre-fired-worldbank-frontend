@@ -24,10 +24,23 @@
 .textfield-container {
   width: 80%;
   height: 80px;
-  outline: 2px solid #282c34;
+  /* outline: 2px solid #282c34; */
   margin: 20px;
   position: fixed; /* or absolute */
   top: 30%;
+  left: 10%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.searchbutton-container {
+  width: 80%;
+  height: 80px;
+  /* outline: 2px solid #282c34; */
+  margin: 20px;
+  position: fixed; /* or absolute */
+  top: 50%;
   left: 10%;
   display: flex;
   justify-content: space-around;

@@ -24,6 +24,12 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             World Bank
           </Typography>
+          <Button sx={{ mr: 5 }} color="inherit">
+            Search
+          </Button>
+          <Button sx={{ mr: 110 }} color="inherit">
+            History
+          </Button>
           <Button color="inherit">Log out</Button>
         </Toolbar>
       </AppBar>
