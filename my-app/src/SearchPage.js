@@ -1,11 +1,14 @@
+import { AppBar } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import TopNavBar from "./components/TopNavBar";
 import YearPicker from "./components/YearPicker";
 import BasicSelect from "./components/YearPicker";
 
 export default function SearchPage() {
   return (
     <div>
-      <div class="header"></div>
+      <TopNavBar />
+
       <div class="textfield-container">
         <TextField
           id="outlined-basic"
