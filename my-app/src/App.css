@@ -23,7 +23,7 @@
 
 .textfield-container {
   width: 80%;
-  height: 80px;
+  height: 40%;
   /* outline: 2px solid #282c34; */
   margin: 20px;
   position: fixed; /* or absolute */
@@ -31,20 +31,29 @@
   left: 10%;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: top;
+}
+
+.TextField {
+  margin: 10px;
 }
 
 .searchbutton-container {
-  width: 80%;
-  height: 80px;
+  width: 75%;
   /* outline: 2px solid #282c34; */
-  margin: 20px;
   position: fixed; /* or absolute */
   top: 50%;
-  left: 10%;
+  left: 12.5%;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: flex-end;
+  margin: 20px;
+}
+
+.countries-container {
+  /* outline: 2px solid #282c34; */
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
 }
 
 .App-header {
