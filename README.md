@@ -15,3 +15,8 @@ npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/x-date-pickers @mui/material @emotion/react @emotion/styled --force
 npm install @mui/icons-material
 ```
+
+day-js
+```
+npm install dayjs
+```
