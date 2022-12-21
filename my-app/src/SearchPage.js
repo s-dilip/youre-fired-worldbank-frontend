@@ -31,9 +31,11 @@ export default function SearchPage() {
     return indicators;
   }
 
-  useEffect(async () => {
-    const indicatorsList = await fetchIndicators();
-    setIndicators(indicatorsList);
+  useEffect(() => {
+    (async function () {
+      const indicatorsList = await fetchIndicators();
+      setIndicators(indicatorsList);
+    })();
   }, []);
 
   return (
