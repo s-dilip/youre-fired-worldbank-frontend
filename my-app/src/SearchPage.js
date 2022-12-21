@@ -48,10 +48,6 @@ export default function SearchPage() {
     })();
   }, []);
 
-  function logIndicator() {
-    console.log(indicator);
-  }
-
   return (
     <div>
       <TopNavBar />
@@ -67,7 +63,7 @@ export default function SearchPage() {
           {/* <Button variant="outlined">Add Country</Button> */}
         </div>
         <Autocomplete
-          disablePortal
+          // disablePortal
           sx={{ width: 300 }}
           options={indicators}
           renderInput={(params) => (
@@ -76,15 +72,18 @@ export default function SearchPage() {
               id="outlined-basic"
               label="Enter Indicator"
               variant="outlined"
+              onChange={onIndicatorInputChange}
             />
           )}
-          onChange={onIndicatorInputChange}
+          onInputChange={(newInputValue) => {
+            setIndicator(newInputValue);
+          }}
         />
         <YearPicker label="Start Year" />
         <YearPicker label="End Year" />
       </div>
       <div class="searchbutton-container">
-        <Button variant="outlined" onClick={logIndicator}>
+        <Button variant="outlined" onClick={fetchCountry}>
           Search
         </Button>
       </div>
