@@ -24,8 +24,6 @@ export default function SearchPage() {
 
   return (
     <div>
-      <TopNavBar />
-
       <div class="textfield-container">
         <div class="countries-container">
           <TextField
