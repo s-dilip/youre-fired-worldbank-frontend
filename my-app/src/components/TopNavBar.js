@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 
 export default function TopNavBar() {
   return (
@@ -24,9 +25,11 @@ export default function TopNavBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             World Bank
           </Typography>
-          <Button sx={{ mr: 5 }} color="inherit">
-            Search
-          </Button>
+          <Link to="/search">
+            <Button sx={{ mr: 5 }} color="inherit">
+              Search
+            </Button>
+          </Link>
           <Button sx={{ mr: 110 }} color="inherit">
             History
           </Button>
