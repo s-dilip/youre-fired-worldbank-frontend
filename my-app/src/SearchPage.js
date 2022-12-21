@@ -4,11 +4,12 @@ import TopNavBar from "./components/TopNavBar";
 import YearPicker from "./components/YearPicker";
 import BasicSelect from "./components/YearPicker";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SearchPage() {
   //   const [countryList, setCountryList] = useState([{ country: "" }]);
   const [country, setCountry] = useState("");
+  const [indicators, setIndicators] = useState([]); //This state contains list of all indicators
 
   const onCountryInputChange = (e) => {
     setCountry(e.target.value);
@@ -21,6 +22,19 @@ export default function SearchPage() {
     const countryData = await apiResponse.json();
     console.log(countryData);
   }
+
+  async function fetchIndicators() {
+    const apiResponse = await fetch(
+      "http://127.0.0.1:5000/countries/indicators"
+    );
+    const indicators = await apiResponse.json();
+    return indicators;
+  }
+
+  useEffect(async () => {
+    const indicatorsList = await fetchIndicators();
+    setIndicators(indicatorsList);
+  }, []);
 
   return (
     <div>
