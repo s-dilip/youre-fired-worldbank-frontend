@@ -5,7 +5,9 @@ import TopNavBar from "./components/TopNavBar";
 import YearPicker from "./components/YearPicker";
 import BasicSelect from "./components/YearPicker";
 import Button from "@mui/material/Button";
+
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function SearchPage() {
   //   const [countryList, setCountryList] = useState([{ country: "" }]);
@@ -50,8 +52,6 @@ export default function SearchPage() {
 
   return (
     <div>
-      <TopNavBar />
-
       <div class="textfield-container">
         <div class="countries-container">
           <TextField
@@ -83,9 +83,11 @@ export default function SearchPage() {
         <YearPicker label="End Year" />
       </div>
       <div class="searchbutton-container">
-        <Button variant="outlined" onClick={fetchCountry}>
-          Search
-        </Button>
+        <Link to="/results">
+          <Button variant="outlined" onClick={fetchCountry}>
+            Search
+          </Button>
+        </Link>
       </div>
     </div>
   );
