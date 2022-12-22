@@ -13,7 +13,8 @@ export default function SearchPage() {
   //   const [countryList, setCountryList] = useState([{ country: "" }]);
   const [country, setCountry] = useState("");
   const [indicator, setIndicator] = useState("");
-  const [indicators, setIndicators] = useState([]); //This state contains list of all indicators
+  const [indicators, setIndicators] = useState(["GDP"]); //This state contains list of all indicators
+  const [countryNames, setCountryNames] = useState(["Germany"]);
 
   const onCountryInputChange = (e) => {
     setCountry(e.target.value);
@@ -25,7 +26,7 @@ export default function SearchPage() {
 
   async function fetchCountry() {
     const apiResponse = await fetch(
-      `http://127.0.0.1:5000/countries/${country}`
+      `http://127.0.0.1:5000/countries/${country.target.childNodes[0].data}` //State for some reason is storing syntheticBaseEvent instead of string
     );
     const countryData = await apiResponse.json();
     console.log(countryData);
@@ -39,6 +40,12 @@ export default function SearchPage() {
     return indicators;
   }
 
+  async function fetchAllCountryNames() {
+    const apiResponse = await fetch("http://127.0.0.1:5000/countries/allnames");
+    const allNames = await apiResponse.json();
+    return allNames;
+  }
+
   useEffect(() => {
     (async function () {
       const indicatorsList = await fetchIndicators();
@@ -50,17 +57,37 @@ export default function SearchPage() {
     })();
   }, []);
 
+  useEffect(() => {
+    (async function () {
+      const countriesList = await fetchAllCountryNames();
+      let countriesArray = [];
+      for (let i = 0; i < countriesList.length; i++) {
+        countriesArray.push(countriesList[i][0]);
+      }
+      setCountryNames(countriesArray);
+    })();
+  }, []);
+
   return (
     <div>
       <div class="textfield-container">
         <div class="countries-container">
-          <TextField
-            id="outlined-basic"
-            label="Enter Country"
-            variant="outlined"
-            onChange={onCountryInputChange}
+          <Autocomplete
+            sx={{ width: 200 }}
+            options={countryNames}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                id="outlined-basic"
+                label="Enter Country"
+                variant="outlined"
+                onChange={onCountryInputChange}
+              />
+            )}
+            onInputChange={(newInputValue) => {
+              setCountry(newInputValue);
+            }}
           />
-          {/* <Button variant="outlined">Add Country</Button> */}
         </div>
         <Autocomplete
           // disablePortal
