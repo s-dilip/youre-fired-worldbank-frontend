@@ -10,7 +10,7 @@ export default function CreateAccountPage(props) {
       <LoginForm changeUser={changeUser} />
       <p>Don't have an account?</p>
       <Link to="/create-account">
-        <Button color="inherit">Create Account</Button>
+        <Button color="inherit">Sign Up</Button>
       </Link>
     </div>
   );

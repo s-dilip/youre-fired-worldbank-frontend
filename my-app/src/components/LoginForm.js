@@ -57,6 +57,7 @@ export default function CreateAccountForm(props) {
         name="username"
         onChange={handleChange}
         onBlur={handleBlur}
+        id="username"
       />
       {touched.username && errors.username ? (
         <div>{errors.username}</div>
@@ -68,6 +69,7 @@ export default function CreateAccountForm(props) {
         name="password"
         onChange={handleChange}
         onBlur={handleBlur}
+        id="password"
       />
       {touched.password && errors.password ? (
         <div>{errors.password}</div>
