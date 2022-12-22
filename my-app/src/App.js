@@ -7,15 +7,19 @@ import ResultsPage from "./ResultsPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import LoginPage from "./pages/LoginPage.js";
 import { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const changeUser = (username) => {
     setCurrentUser(username);
   };
+  const logOut = () => {
+    setCurrentUser(null);
+  };
   return (
-    <div>
-      <TopNavBar />
+    <BrowserRouter>
+      <TopNavBar currentUser={currentUser} logOut={logOut} />
       <Routes>
         <Route path="/search" element={<SearchPage />} />
         <Route path="/results" element={<ResultsPage />} />
@@ -25,7 +29,7 @@ function App() {
         />
         <Route path="/login" element={<LoginPage changeUser={changeUser} />} />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 }
 

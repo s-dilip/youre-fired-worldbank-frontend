@@ -8,7 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 
-export default function TopNavBar() {
+export default function TopNavBar(props) {
+  const { currentUser, logOut } = props;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -33,9 +34,20 @@ export default function TopNavBar() {
           <Button sx={{ mr: 110 }} color="inherit">
             History
           </Button>
-          <Link to="/create-account">
-            <Button color="inherit">Create Account</Button>
-          </Link>
+          {currentUser ? (
+            <div>
+              <h3>Hello {currentUser}</h3>
+              <Link to="/create-account">
+                <Button color="inherit" onClick={logOut}>
+                  Log out
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <Link to="/create-account">
+              <Button color="inherit">Create Account</Button>
+            </Link>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
