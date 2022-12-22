@@ -33,7 +33,9 @@ export default function TopNavBar() {
           <Button sx={{ mr: 110 }} color="inherit">
             History
           </Button>
-          <Button color="inherit">Log out</Button>
+          <Link to="/create-account">
+            <Button color="inherit">Create Account</Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </Box>
