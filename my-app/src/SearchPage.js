@@ -13,7 +13,9 @@ export default function SearchPage() {
   //   const [countryList, setCountryList] = useState([{ country: "" }]);
   const [country, setCountry] = useState("");
   const [indicator, setIndicator] = useState("");
-  const [indicators, setIndicators] = useState(["GDP"]); //This state contains list of all indicators
+  const [indicators, setIndicators] = useState([
+    "Net errors and omissions (BoP, current US$)",
+  ]); //This state contains list of all indicators
   const [countryNames, setCountryNames] = useState(["Germany"]);
 
   const onCountryInputChange = (e) => {
