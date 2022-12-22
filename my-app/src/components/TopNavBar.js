@@ -34,7 +34,7 @@ export default function TopNavBar() {
             History
           </Button>
           <Link to="/create-account">
-            <Button color="inherit">Log in</Button>
+            <Button color="inherit">Create Account</Button>
           </Link>
         </Toolbar>
       </AppBar>
