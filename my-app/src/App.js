@@ -9,6 +9,15 @@ import LoginPage from "./pages/LoginPage.js";
 import { useState } from "react";
 
 function App() {
+  const [country, setCountry] = useState("");
+  const changeCountry = (countryName) => {
+    setCountry(countryName);
+  };
+  const [indicator, setIndicator] = useState("");
+  const changeIndicator = (indicatorName) => {
+    setIndicator(indicatorName);
+  };
+
   const [currentUser, setCurrentUser] = useState(null);
   const changeUser = (username) => {
     setCurrentUser(username);
@@ -17,8 +26,19 @@ function App() {
     <div>
       <TopNavBar />
       <Routes>
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/results" element={<ResultsPage />} />
+        <Route
+          path="/search"
+          element={
+            <SearchPage
+              changeCountry={changeCountry}
+              changeIndicator={changeIndicator}
+            />
+          }
+        />
+        <Route
+          path="/results"
+          element={<ResultsPage country={country} indicator={indicator} />}
+        />
         <Route
           path="/create-account"
           element={<CreateAccountPage changeUser={changeUser} />}

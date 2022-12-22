@@ -9,8 +9,7 @@ import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function SearchPage() {
-  //   const [countryList, setCountryList] = useState([{ country: "" }]);
+export default function SearchPage(props) {
   const [country, setCountry] = useState("");
   const [indicator, setIndicator] = useState("");
   const [indicators, setIndicators] = useState([
@@ -46,6 +45,11 @@ export default function SearchPage() {
     const apiResponse = await fetch("http://127.0.0.1:5000/countries/allnames");
     const allNames = await apiResponse.json();
     return allNames;
+  }
+
+  function setSearchParams() {
+    props.changeCountry(country.target.childNodes[0].data);
+    props.changeIndicator(indicator.target.childNodes[0].data);
   }
 
   useEffect(() => {
@@ -113,7 +117,7 @@ export default function SearchPage() {
       </div>
       <div class="searchbutton-container">
         <Link to="/results">
-          <Button variant="outlined" onClick={fetchCountry}>
+          <Button variant="outlined" onClick={setSearchParams}>
             Search
           </Button>
         </Link>

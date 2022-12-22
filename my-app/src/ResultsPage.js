@@ -1,11 +1,11 @@
 import { useState } from "react";
 import IndicatorChart from "./components/IndicatorChart";
 
-export default function ResultsPage() {
-  const country = "Germany";
-  const startYear = 1995;
-  const endYear = 2011;
-  const indicator = "CO2 emissions (kt)";
+export default function ResultsPage(props) {
+  const country = props.country;
+  const startYear = 1995; //Change This
+  const endYear = 2011; //Change This
+  const indicator = props.indicator;
 
   let years = [];
 
@@ -38,8 +38,8 @@ export default function ResultsPage() {
       <IndicatorChart
         datapoints={dataPoints}
         years={years}
-        countryName={country}
-        indicatorChosen={indicator}
+        countryName={props.country}
+        indicatorChosen={props.indicator}
       />
     </div>
   );
