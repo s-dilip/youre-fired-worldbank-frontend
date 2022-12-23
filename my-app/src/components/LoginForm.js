@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { checkUser } from "../Networking.js";
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export default function CreateAccountForm(props) {
   const { changeUser } = props;
@@ -38,7 +40,6 @@ export default function CreateAccountForm(props) {
         const response = await checkUser(values.username, values.password);
         if (response.code === 200) {
           (() => changeUser(values.username))();
-          console.log("here");
           navigate("/search");
         } else if (response.code === 404) {
           setValidationError("Username does not exist. Please try again");
@@ -50,34 +51,38 @@ export default function CreateAccountForm(props) {
   );
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        name="username"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        id="username"
-      />
-      {touched.username && errors.username ? (
-        <div>{errors.username}</div>
-      ) : null}
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="username">
+        <Form.Label>Username</Form.Label>
+        <Form.Control
+          type="username"
+          placeholder="Enter username"
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {touched.username && errors.username ? (
+          <div className="errorMessage">{errors.username}</div>
+        ) : null}
+      </Form.Group>
 
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        name="password"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        id="password"
-      />
-      {touched.password && errors.password ? (
-        <div>{errors.password}</div>
-      ) : null}
+      <Form.Group className="mb-3" controlId="password">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          type="password"
+          placeholder="Password"
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {touched.password && errors.password ? (
+          <div className="errorMessage">{errors.password}</div>
+        ) : null}
+      </Form.Group>
 
-      <button type="submit">submit</button>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
 
-      <p>{validationError}</p>
-    </form>
+      <p className="errorMessage">{validationError}</p>
+    </Form>
   );
 }
