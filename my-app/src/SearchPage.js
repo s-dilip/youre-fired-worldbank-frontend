@@ -9,12 +9,15 @@ import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function SearchPage() {
-  //   const [countryList, setCountryList] = useState([{ country: "" }]);
+export default function SearchPage(props) {
   const [country, setCountry] = useState("");
   const [indicator, setIndicator] = useState("");
-  const [indicators, setIndicators] = useState(["GDP"]); //This state contains list of all indicators
+  const [indicators, setIndicators] = useState([
+    "Net errors and omissions (BoP, current US$)",
+  ]); //This state contains list of all indicators
   const [countryNames, setCountryNames] = useState(["Germany"]);
+  const [startYear, setStartYear] = useState(null);
+  const [endYear, setEndYear] = useState(null);
 
   const onCountryInputChange = (e) => {
     setCountry(e.target.value);
@@ -22,6 +25,10 @@ export default function SearchPage() {
 
   const onIndicatorInputChange = (e) => {
     setIndicator(e.target.value);
+  };
+
+  const handleStartYearChange = (e) => {
+    setStartYear(e.target.value);
   };
 
   async function fetchCountry() {
@@ -44,6 +51,14 @@ export default function SearchPage() {
     const apiResponse = await fetch("http://127.0.0.1:5000/countries/allnames");
     const allNames = await apiResponse.json();
     return allNames;
+  }
+
+  function setSearchParams() {
+    props.changeCountry(country.target.childNodes[0].data);
+    props.changeIndicator(indicator.target.childNodes[0].data);
+    // console.log(startYear);
+    props.changeStartYear(startYear.target.childNodes[0].data);
+    props.changeEndYear(endYear.target.childNodes[0].data);
   }
 
   useEffect(() => {
@@ -106,12 +121,24 @@ export default function SearchPage() {
             setIndicator(newInputValue);
           }}
         />
-        <YearPicker label="Start Year" />
-        <YearPicker label="End Year" />
+        <YearPicker
+          label="Start Year"
+          getValue={(date) => {
+            setStartYear(date);
+            console.log(date);
+          }}
+        />
+        <YearPicker
+          label="End Year"
+          getValue={(value) => {
+            setEndYear(value);
+            console.log(value);
+          }}
+        />
       </div>
       <div class="searchbutton-container">
         <Link to="/results">
-          <Button variant="outlined" onClick={fetchCountry}>
+          <Button variant="outlined" onClick={setSearchParams}>
             Search
           </Button>
         </Link>
