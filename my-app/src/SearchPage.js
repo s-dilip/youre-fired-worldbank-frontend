@@ -2,9 +2,12 @@ import { AppBar } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import TopNavBar from "./components/TopNavBar";
-import YearPicker from "./components/YearPicker";
-import BasicSelect from "./components/YearPicker";
 import Button from "@mui/material/Button";
+import * as React from "react";
+import dayjs from "dayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -16,8 +19,10 @@ export default function SearchPage(props) {
     "Net errors and omissions (BoP, current US$)",
   ]); //This state contains list of all indicators
   const [countryNames, setCountryNames] = useState(["Germany"]);
-  const [startYear, setStartYear] = useState(null);
-  const [endYear, setEndYear] = useState(null);
+  const [startYear, setStartYear] = React.useState(dayjs("2022-04-07"));
+  const [endYear, setEndYear] = React.useState(dayjs("2022-04-07"));
+  const [startValue, setStartValue] = React.useState(dayjs("2022-04-07"));
+  const [endValue, setEndValue] = React.useState(dayjs("2022-04-07"));
 
   const onCountryInputChange = (e) => {
     setCountry(e.target.value);
@@ -25,10 +30,6 @@ export default function SearchPage(props) {
 
   const onIndicatorInputChange = (e) => {
     setIndicator(e.target.value);
-  };
-
-  const handleStartYearChange = (e) => {
-    setStartYear(e.target.value);
   };
 
   async function fetchCountry() {
@@ -121,20 +122,36 @@ export default function SearchPage(props) {
             setIndicator(newInputValue);
           }}
         />
-        <YearPicker
-          label="Start Year"
-          getValue={(date) => {
-            setStartYear(date);
-            console.log(date);
-          }}
-        />
-        <YearPicker
-          label="End Year"
-          getValue={(value) => {
-            setEndYear(value);
-            console.log(value);
-          }}
-        />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            views={["year"]}
+            label="Start Year"
+            value={startValue}
+            onChange={(newValue) => {
+              setStartValue(newValue);
+              setStartYear(newValue["$d"].getFullYear());
+              console.log(startYear);
+            }}
+            renderInput={(params) => (
+              <TextField {...params} helperText={null} />
+            )}
+          />
+        </LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            views={["year"]}
+            label="End Year"
+            value={endValue}
+            onChange={(newValue) => {
+              setEndValue(newValue);
+              setEndYear(newValue["$d"].getFullYear());
+              console.log(endYear);
+            }}
+            renderInput={(params) => (
+              <TextField {...params} helperText={null} />
+            )}
+          />
+        </LocalizationProvider>
       </div>
       <div class="searchbutton-container">
         <Link to="/results">
