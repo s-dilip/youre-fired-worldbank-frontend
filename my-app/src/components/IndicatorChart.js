@@ -17,7 +17,7 @@ export default function IndicatorChart(props) {
           title: `${props.countryName}'s ${props.indicatorChosen}`,
         }}
       />
-      <h1>{props.sy}</h1>
+      <h1>{props.years}</h1>
     </div>
   );
 }

@@ -3,8 +3,8 @@ import IndicatorChart from "./components/IndicatorChart";
 
 export default function ResultsPage(props) {
   const country = props.country;
-  const startYear = 1995; //Change This
-  const endYear = 2011; //Change This
+  const startYear = props.startYear; //Change This
+  const endYear = props.endYear; //Change This
   const indicator = props.indicator;
 
   let years = [];
