@@ -8,7 +8,6 @@ import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -58,8 +57,8 @@ export default function SearchPage(props) {
     props.changeCountry(country.target.childNodes[0].data);
     props.changeIndicator(indicator.target.childNodes[0].data);
     // console.log(startYear);
-    props.changeStartYear(startYear.target.childNodes[0].data);
-    props.changeEndYear(endYear.target.childNodes[0].data);
+    props.changeStartYear(startYear);
+    props.changeEndYear(endYear);
   }
 
   useEffect(() => {

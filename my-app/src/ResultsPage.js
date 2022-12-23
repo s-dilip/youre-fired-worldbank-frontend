@@ -17,7 +17,7 @@ export default function ResultsPage(props) {
 
   async function fetchIndicatorForYear(year) {
     const apiResponse = await fetch(
-      `http://127.0.0.1:5000countries/${country}/${indicator}/${year}`
+      `http://127.0.0.1:5000/countries/${country}/${indicator}/${year}`
     );
     const dataPoint = await apiResponse.json();
     return dataPoint[0].value;
