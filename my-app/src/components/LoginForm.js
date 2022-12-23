@@ -38,7 +38,6 @@ export default function CreateAccountForm(props) {
         const response = await checkUser(values.username, values.password);
         if (response.code === 200) {
           (() => changeUser(values.username))();
-          console.log("here");
           navigate("/search");
         } else if (response.code === 404) {
           setValidationError("Username does not exist. Please try again");

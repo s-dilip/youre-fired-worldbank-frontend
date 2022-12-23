@@ -3,6 +3,37 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import App from "../App";
 
+// afterEach(() => {
+//   global.fetch.mockRestore();
+// });
+
+// it("displays three forecast cards", async () => {
+//   const mockData = { code: 304 };
+//   jest.spyOn(global, "fetch").mockImplementation(() =>
+//     Promise.resolve({
+//       json: () => Promise.resolve(mockData),
+//     })
+//   );
+
+//   render(<App />);
+//   const createAccountButton = screen.getByRole("button", {
+//     name: /Create Account/i,
+//   });
+//   fireEvent.click(createAccountButton);
+
+//   const username_field = screen.getByLabelText("Username");
+//   const password_field = screen.getByLabelText("Password");
+//   fireEvent.change(username_field, { target: { value: "John Cena" } });
+//   fireEvent.change(password_field, { target: { value: "asdf" } });
+//   const submit_button = screen.getByRole("button", { name: /submit/i });
+//   fireEvent.click(submit_button);
+
+//   await waitFor(async () => {
+//     const cityComponent = await screen.findAllByTestId("forecastCard");
+//     expect(cityComponent).toHaveLength(3);
+//   });
+// });
+
 it("App renders", () => {
   render(<App />);
 });
