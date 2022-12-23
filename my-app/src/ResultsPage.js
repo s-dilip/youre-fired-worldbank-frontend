@@ -40,6 +40,7 @@ export default function ResultsPage(props) {
         years={years}
         countryName={props.country}
         indicatorChosen={props.indicator}
+        sy={props.startYear}
       />
     </div>
   );

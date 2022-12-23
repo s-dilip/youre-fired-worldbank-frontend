@@ -16,6 +16,8 @@ export default function SearchPage(props) {
     "Net errors and omissions (BoP, current US$)",
   ]); //This state contains list of all indicators
   const [countryNames, setCountryNames] = useState(["Germany"]);
+  const [startYear, setStartYear] = useState(null);
+  const [endYear, setEndYear] = useState(null);
 
   const onCountryInputChange = (e) => {
     setCountry(e.target.value);
@@ -23,6 +25,10 @@ export default function SearchPage(props) {
 
   const onIndicatorInputChange = (e) => {
     setIndicator(e.target.value);
+  };
+
+  const handleStartYearChange = (e) => {
+    setStartYear(e.target.value);
   };
 
   async function fetchCountry() {
@@ -50,6 +56,9 @@ export default function SearchPage(props) {
   function setSearchParams() {
     props.changeCountry(country.target.childNodes[0].data);
     props.changeIndicator(indicator.target.childNodes[0].data);
+    // console.log(startYear);
+    props.changeStartYear(startYear.target.childNodes[0].data);
+    props.changeEndYear(endYear.target.childNodes[0].data);
   }
 
   useEffect(() => {
@@ -112,8 +121,20 @@ export default function SearchPage(props) {
             setIndicator(newInputValue);
           }}
         />
-        <YearPicker label="Start Year" />
-        <YearPicker label="End Year" />
+        <YearPicker
+          label="Start Year"
+          getValue={(date) => {
+            setStartYear(date);
+            console.log(date);
+          }}
+        />
+        <YearPicker
+          label="End Year"
+          getValue={(value) => {
+            setEndYear(value);
+            console.log(value);
+          }}
+        />
       </div>
       <div class="searchbutton-container">
         <Link to="/results">

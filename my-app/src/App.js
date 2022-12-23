@@ -17,6 +17,14 @@ function App() {
   const changeIndicator = (indicatorName) => {
     setIndicator(indicatorName);
   };
+  const [startYear, setStartYear] = useState(null);
+  const changeStartYear = (year) => {
+    setStartYear(year);
+  };
+  const [endYear, setEndYear] = useState(null);
+  const changeEndYear = (year) => {
+    setEndYear(year);
+  };
 
   const [currentUser, setCurrentUser] = useState(null);
   const changeUser = (username) => {
@@ -32,12 +40,21 @@ function App() {
             <SearchPage
               changeCountry={changeCountry}
               changeIndicator={changeIndicator}
+              changeStartYear={changeStartYear}
+              changeEndYear={changeEndYear}
             />
           }
         />
         <Route
           path="/results"
-          element={<ResultsPage country={country} indicator={indicator} />}
+          element={
+            <ResultsPage
+              country={country}
+              indicator={indicator}
+              startYear={startYear}
+              endYear={endYear}
+            />
+          }
         />
         <Route
           path="/create-account"
