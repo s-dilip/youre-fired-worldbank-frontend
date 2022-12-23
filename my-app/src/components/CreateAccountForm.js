@@ -87,7 +87,7 @@ export default function CreateAccountForm(props) {
       <Form.Group className="mb-3" controlId="repassword">
         <Form.Label>Confirm Password</Form.Label>
         <Form.Control
-          type="repassword"
+          type="password"
           placeholder="Password confirmation"
           onChange={handleChange}
           onBlur={handleBlur}
