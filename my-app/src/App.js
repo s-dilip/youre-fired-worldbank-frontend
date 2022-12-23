@@ -10,6 +10,23 @@ import { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
+  const [country, setCountry] = useState("");
+  const changeCountry = (countryName) => {
+    setCountry(countryName);
+  };
+  const [indicator, setIndicator] = useState("");
+  const changeIndicator = (indicatorName) => {
+    setIndicator(indicatorName);
+  };
+  const [startYear, setStartYear] = useState(null);
+  const changeStartYear = (year) => {
+    setStartYear(year);
+  };
+  const [endYear, setEndYear] = useState(null);
+  const changeEndYear = (year) => {
+    setEndYear(year);
+  };
+
   const [currentUser, setCurrentUser] = useState(null);
   const changeUser = (username) => {
     setCurrentUser(username);
@@ -21,8 +38,28 @@ function App() {
     <BrowserRouter>
       <TopNavBar currentUser={currentUser} logOut={logOut} />
       <Routes>
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/results" element={<ResultsPage />} />
+        <Route
+          path="/search"
+          element={
+            <SearchPage
+              changeCountry={changeCountry}
+              changeIndicator={changeIndicator}
+              changeStartYear={changeStartYear}
+              changeEndYear={changeEndYear}
+            />
+          }
+        />
+        <Route
+          path="/results"
+          element={
+            <ResultsPage
+              country={country}
+              indicator={indicator}
+              startYear={startYear}
+              endYear={endYear}
+            />
+          }
+        />
         <Route
           path="/create-account"
           element={<CreateAccountPage changeUser={changeUser} />}
