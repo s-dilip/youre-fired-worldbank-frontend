@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 export default function CreateAccountPage(props) {
   const { changeUser } = props;
   return (
-    <div>
+    <div className="container">
       <h1>Create Account</h1>
       <CreateAccountForm changeUser={changeUser} />
       <p>Already have an account?</p>
